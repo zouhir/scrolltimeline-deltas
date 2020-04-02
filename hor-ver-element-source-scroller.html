@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        .scroll-source {
+            width: 200px;
+            height: 200px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            overflow: scroll;
+        }
+
+        .scroll-source .inner {
+            width: 2000px;
+            height: 2000px;
+            background: aquamarine;
+            position: relative;
+        }
+
+        .scroll-source .inner h3 {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+
+        .blue-box {
+            width: 200px;
+            height: 200px;
+            background: blue;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="blue-box"></div>
+
+<div class="scroll-source">
+    <div class="inner">
+        <h3>this is scroll source</h3>
+    </div>
+</div>
+
+<script>
+    let box = document.querySelector(".blue-box");
+
+    let scrollSource = document.querySelector(".scroll-source");
+
+    let stl = new ScrollTimeline({ scrollSource: scrollSource, timeRange: 2000, orientation: "vertical"});
+
+    let anim = new Animation(
+        new KeyframeEffect(
+            box,
+            [{
+                left: 0,
+            }, {
+                left: '900px'
+            }],
+            {
+                fill: 'forwards',
+                duration: 2000,
+
+            }
+        ),
+        stl
+    )
+
+    anim.play();
+
+
+</script>
+
+</body>
+</html>
